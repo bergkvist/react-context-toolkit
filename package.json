@@ -1,6 +1,6 @@
 {
   "name": "react-context-toolkit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Toolkit for React Context API heavily inspired by @reduxjs/toolkit and react-redux",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
