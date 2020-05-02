@@ -29,8 +29,8 @@ export function createStore<
     action: PayloadAction<any>
   ) => {
     const newState = {} as typeof initialState
-    for (const slice of slices) {
-      newState[slice.name] = reducers[slice.name](state[slice.name], action)
+    for (const { name } of slices) {
+      newState[name] = reducers[name](state[name], action)
     }
     return newState
   }
