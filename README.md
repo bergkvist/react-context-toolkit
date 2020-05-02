@@ -1,6 +1,6 @@
 # react-context-toolkit
 
-Toolkit for React Context API - heavily inspired by @reduxjs/toolkit and react-redux, and written in TypeScript.
+Toolkit for React Context API - heavily inspired by @reduxjs/toolkit and react-redux. Written in TypeScript.
 
 # Features
 
@@ -49,10 +49,9 @@ ReactDOM.render(
     <StateProvider>
       <App />
     </StateProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
   document.getElementById('root')
 )
-
 ```
 
 ### The App component
@@ -62,6 +61,7 @@ Notice that it doesn't need to know anything about the store
 ```tsx
 // src/App.tsx
 
+import React from 'react'
 import Component1 from '../features/component1/Component1'
 import Component2 from '../features/component2/Component2'
 import Component3 from '../features/component3/Component3'
@@ -133,6 +133,7 @@ export const selectValue = (state: RootState) => state[slice.name].value
 ```tsx
 // src/features/component1/Component1.tsx
 
+import React from 'react'
 import { useSelector, useDispatch } from '../../app/store'
 import { increment, incrementBy, selectValue } from './componentSlice1'
 
