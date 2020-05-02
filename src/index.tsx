@@ -17,30 +17,22 @@ export function createStore<
   Slices extends Array<{ name: Name; reducer: Reducer }>
 >(slices: Slices | []) {
   const initialState = {} as SliceToInitialState<Slices[number]>
-  const finalReducers = {} as any
+  const reducers = {} as any
 
   for (const slice of slices) {
     initialState[slice.name] = slice.reducer(void 0, {} as any)
-    finalReducers[slice.name] = slice.reducer
+    reducers[slice.name] = slice.reducer
   }
 
   const rootReducer = (
     state: typeof initialState,
     action: PayloadAction<any>
   ) => {
-    let hasStateChanged = false
-    let newState = {} as typeof initialState
-    let nextStateForCurrentKey = {} as typeof initialState
+    const newState = {} as typeof initialState
     for (const slice of slices) {
-      const currentReducer = finalReducers[slice.name]
-      const prevStateForCurrentKey = state[slice.name]
-      nextStateForCurrentKey = currentReducer(prevStateForCurrentKey, action)
-      hasStateChanged =
-        hasStateChanged || nextStateForCurrentKey !== prevStateForCurrentKey
-      //@ts-ignore
-      newState[slice.name] = nextStateForCurrentKey
+      newState[slice.name] = reducers[slice.name](state[slice.name], action)
     }
-    return hasStateChanged ? newState : state
+    return newState
   }
 
   const Store = createContext({
