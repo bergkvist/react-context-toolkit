@@ -1,0 +1,7 @@
+src
+.babelrc
+webpack.config.js
+src
+test
+tsconfig.json
+.prettierrc
