@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
+    "target": "ES5",
+    "outDir": "lib",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "lib": [
-      "ES2020"
-    ]
-  }
+    "declaration": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "lib": ["ES2020"],
+    "sourceMap": true,
+    "module": "CommonJS"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "test"]
 }
