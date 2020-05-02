@@ -117,7 +117,7 @@ const slice = createSlice({
   reducers: {
     // uses immer reducers to allow mutations on an intermediate draft state
     increment(state) {
-      value++
+      state.value++
     },
     incrementBy(state, action: PayloadAction<number>) {
       state.value += action.payload
