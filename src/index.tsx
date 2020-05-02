@@ -2,9 +2,9 @@ import React, { FunctionComponent, useReducer } from 'react'
 import { createContext, useContextSelector } from 'use-context-selector'
 import { PayloadAction, Reducer } from '@reduxjs/toolkit'
 
-// TODO: Allow reducers to throw on invalid action?
-// TODO: Types on dispatch as well?
-// TODO: Remove dependence on @reduxjs/toolkit
+//? Types on dispatch as well?
+// Since the action types append string literals together, we won't be able to create these types (yet)
+// https://github.com/microsoft/TypeScript/issues/12754
 
 type SliceToInitialState<
   Slice extends { name: PropertyKey; reducer: Reducer }

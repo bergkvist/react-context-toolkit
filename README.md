@@ -2,11 +2,7 @@
 
 Toolkit for React Context API - heavily inspired by @reduxjs/toolkit and react-redux. Written in TypeScript.
 
-# Features
-
-- Uses React Context API instead of Redux for managing state.
-- Provides `useSelector` and `useDispatch` hooks. (Just like [react-redux](https://www.npmjs.com/package/react-redux), but with "autocomplete" inside useSelector)
-- Allows creating a modular, and yet global store. (Uses [`@reduxjs/toolkit`-slices](https://github.com/reduxjs/redux-toolkit/blob/master/docs/api/createSlice.md) to build store)
+- It uses the React Context API instead of Redux for managing state under the hood.
 - Depends on [`use-context-selector`](https://github.com/dai-shi/use-context-selector) to prevent unneccesary rerenders. (https://github.com/reactjs/rfcs/pull/119)
 
 # Motivation
@@ -16,6 +12,36 @@ I really like the combination of react-redux and @reduxjs/toolkit. React-Redux w
 - https://github.com/visgl/deck.gl/issues/4550
 
 The context API in React doesn't suffer from the same problem, so I decided to make this feel more like I'm using Redux.
+
+# API
+
+### `createStore([...slices])`:
+
+```js
+const {
+  StateProvider,
+  useSelector,
+  useDispatch,
+  Store,
+  initialState,
+  rootReducer,
+} = createStore([
+  slice1,
+  slice2,
+  // ...
+])
+```
+
+| returned object              | description                                                                                           |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `StateProvider`              | The context provider (React Element) that provides the store to all its children                      |
+| `useSelector(selector)`      | Hook that selects from the global store (and only rerenders if the selected state has changed)        |
+| `useDispatch()`              | Hook that returns a dispatch function, just like the one in React-Redux                               |
+| `Store`                      | In case you need direct access to the React Context object                                            |
+| `initialState`               | The complete initial state. The slice names are keys, under which each slice has its own initialState |
+| `rootReducer(state, action)` | The reducer that takes in the combined state, an action, and produces a new combined state            |
+
+### `createSlice()`: This is exported directly from `@reduxjs/toolkit`. [API DOCS HERE](https://redux-toolkit.js.org/api/createslice)
 
 # Getting Started
 
@@ -29,7 +55,7 @@ npm install --save react-context-toolkit
 yarn add react-context-toolkit
 ```
 
-## Application Example
+## Example
 
 Also, check out the test folder for another example.
 
@@ -67,7 +93,7 @@ import Component2 from '../features/component2/Component2'
 import Component3 from '../features/component3/Component3'
 
 // Note that the App component doesn't need to know anything about the store!
-export default function App() {
+export default function App () {
   return (
     <>
       <Component1 />
@@ -116,10 +142,10 @@ const slice = createSlice({
   },
   reducers: {
     // uses immer reducers to allow mutations on an intermediate draft state
-    increment(state) {
+    increment (state) {
       state.value++
     },
-    incrementBy(state, action: PayloadAction<number>) {
+    incrementBy (state, action: PayloadAction<number>) {
       state.value += action.payload
     },
   },
@@ -137,7 +163,7 @@ import React from 'react'
 import { useSelector, useDispatch } from '../../app/store'
 import { increment, incrementBy, selectValue } from './componentSlice1'
 
-export default function Component1() {
+export default function Component1 () {
   const value = useSelector(selectValue)
   const dispatch = useDispatch()
   return (
@@ -149,3 +175,11 @@ export default function Component1() {
 ```
 
 ## For more examples, see the test folder on GitHub
+
+## Roadmap
+
+- Ability to add your own middleware/docs
+- Redux-thunk support/docs
+- Redux-saga support/docs
+- Persistence support/docs (using localStorage) -> requiring serializable state
+- Reselect support/docs (for computationally intensive selects)
