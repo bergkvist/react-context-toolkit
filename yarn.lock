@@ -4592,10 +4592,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-use-context-selector@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-1.1.1.tgz#1180ad98dcc585aee39c458a3e5582392a1afcf9"
-  integrity sha512-MDcSTShyTB+PMlbIeN0kWzTeognnXyH6ffZL+fHwaTegNRQvpzbELIZW80Bdmjn+xckxfVugfz2WqTXcFsA8UA==
+use-context-selector@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/use-context-selector/-/use-context-selector-1.1.2.tgz#63bf6e3502fd383f1257c49df2495e05564d262e"
+  integrity sha512-uwtrMKEHjZQ8JXMZLUljVDY4CqpAC3MgMcmtpZACG+pJeJ7GNDzBW0thC2RbJX2wKYMvLtYRXgQEqaOnmlF/KQ==
 
 use@^3.1.0:
   version "3.1.1"
